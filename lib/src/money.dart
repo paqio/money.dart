@@ -75,7 +75,11 @@ class Money implements Comparable<Money> {
     final fractionPart = amount.remainder(currency.subUnit).abs().toString();
     final buffer = StringBuffer();
 
-    buffer..write(integerPart)..write('.');
+     if(integerPart == "0" && amount < 0){
+      buffer..write("-"+integerPart)..write('.');
+        }else{
+      buffer..write(integerPart)..write('.');
+        }
 
     for (var digits = fractionPart.length;
         digits < currency.defaultFractionDigits;
