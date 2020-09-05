@@ -40,7 +40,7 @@ class Money implements Comparable<Money> {
   ///     Money.fromString('120.000', Currency('IQD');
   ///
   factory Money.fromString(String amount, Currency currency) {
-    final pattern = r'^(-)?(\d+)(?:\.(\d{' +
+    final pattern = r'^(-)?(\d+)(?:\,(\d{' +
         currency.defaultFractionDigits.toString() +
         r'}))?$';
     final match = (RegExp(pattern, multiLine: false)).firstMatch(amount);
@@ -76,9 +76,9 @@ class Money implements Comparable<Money> {
     final buffer = StringBuffer();
 
      if(integerPart == "0" && amount < 0){
-      buffer..write("-"+integerPart)..write('.');
+      buffer..write("-"+integerPart)..write(',');
         }else{
-      buffer..write(integerPart)..write('.');
+      buffer..write(integerPart)..write(',');
         }
 
     for (var digits = fractionPart.length;
